@@ -29,16 +29,16 @@ public final class Etapa03_Estats {
         Thread fil = new Thread(() -> Etapa01_Engegar.dorm(dormMs), "observat");
 
         // TODO FORAT 07 · Desa l'estat del fil ara, que encara no s'ha engegat.
-        Thread.State abans = Forat.n(7);
+        Thread.State abans = fil.getState();
 
         fil.start();
         Thread.sleep(dormMs / 4); // li donem temps d'arribar al sleep
         Thread.State durant = fil.getState();
         // TODO FORAT 08 · Desa si el fil és viu en aquest moment (hauria de ser-ho).
-        boolean viuDurant = Forat.n(8);
+        boolean viuDurant = fil.isAlive();
 
         // TODO FORAT 09 · Espera que el fil acabi del tot.
-        Forat.n(9);
+        fil.join();
         Thread.State despres = fil.getState();
 
         return new Observacio(abans, durant, viuDurant, despres);
