@@ -47,7 +47,7 @@ public final class Etapa06_Carrera {
         @Override
         public void incrementa() {
             // TODO FORAT 16 · Incrementa valor dins d'un bloc synchronized sobre this (una sola línia).
-            Forat.n(16);
+            synchronized (this) { valor++; }
         }
 
         @Override
@@ -65,13 +65,13 @@ public final class Etapa06_Carrera {
         @Override
         public void incrementa() {
             // TODO FORAT 17 · Incrementa l'AtomicInteger de manera atòmica.
-            Forat.n(17);
+            valor.incrementAndGet();
         }
 
         @Override
         public int valor() {
             // TODO FORAT 18 · Retorna el valor actual de l'AtomicInteger com a int.
-            return Forat.n(18);
+            return valor.get();
         }
     }
 
