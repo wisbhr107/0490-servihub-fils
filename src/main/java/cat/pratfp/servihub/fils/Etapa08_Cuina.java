@@ -36,10 +36,10 @@ public final class Etapa08_Cuina {
                 for (int i = 1; i <= comandes; i++) {
                     Comanda c = prepara(i);
                     // TODO FORAT 22 · Posa la comanda al passaplats (si és ple, aquesta crida s'espera sola).
-                    Forat.n(22);
+                    passaplats.put(c);
                 }
                 // TODO FORAT 23 · Posa al passaplats una píndola Comanda.FI per a CADA repartidor (bucle d'una línia).
-                Forat.n(23);
+                for (int i = 0; i < repartidors; i++) passaplats.put(Comanda.FI);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -51,7 +51,7 @@ public final class Etapa08_Cuina {
                 try {
                     while (true) {
                         // TODO FORAT 24 · Recull la següent comanda del passaplats (si és buit, espera't).
-                        Comanda c = Forat.n(24);
+                        Comanda c = passaplats.take();
                         if (c.esFi()) {
                             break;
                         }
