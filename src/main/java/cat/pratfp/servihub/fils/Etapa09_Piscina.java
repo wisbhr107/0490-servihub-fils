@@ -31,7 +31,7 @@ public final class Etapa09_Piscina {
     public static List<Integer> totalsPerCaixa(List<List<Integer>> caixes, int fils)
             throws InterruptedException, ExecutionException {
         // TODO FORAT 25 · Crea una piscina amb un nombre fix de fils.
-        ExecutorService piscina = Forat.n(25);
+        ExecutorService piscina = Executors.newFixedThreadPool(fils);
         try {
             List<Future<Integer>> futurs = new ArrayList<>();
             for (List<Integer> tiquets : caixes) {
@@ -40,14 +40,14 @@ public final class Etapa09_Piscina {
                     return tiquets.stream().mapToInt(Integer::intValue).sum();
                 };
                 // TODO FORAT 26 · Envia la tasca a la piscina i desa el Future que et retorna.
-                Future<Integer> futur = Forat.n(26);
+                Future<Integer> futur = piscina.submit(sumaCaixa);
                 futurs.add(futur);
             }
 
             List<Integer> totals = new ArrayList<>();
             for (Future<Integer> futur : futurs) {
                 // TODO FORAT 27 · Recull el resultat del Future (si encara no està, aquesta crida s'espera).
-                int total = Forat.n(27);
+                int total = futur.get();
                 totals.add(total);
             }
             return totals;
