@@ -26,7 +26,7 @@ public final class Etapa05_Dimonis {
             }
         }, "cronometre");
         // TODO FORAT 13 · Fes que el cronòmetre sigui un fil dimoni (s'ha de fer ABANS de start()).
-        Forat.n(13);
+        cronometre.setDaemon(true);
         return cronometre;
     }
 
@@ -39,9 +39,9 @@ public final class Etapa05_Dimonis {
         Thread urgent = new Thread(tascaUrgent, "urgent");
         Thread tranquil = new Thread(tascaTranquilla, "tranquil");
         // TODO FORAT 14 · Dona al fil urgent la prioritat màxima (fes servir la constant de Thread, no el número).
-        Forat.n(14);
+        urgent.setPriority(Thread.MAX_PRIORITY);
         // TODO FORAT 15 · Dona al fil tranquil la prioritat mínima.
-        Forat.n(15);
+        tranquil.setPriority(Thread.MIN_PRIORITY);
         return new Thread[] {urgent, tranquil};
     }
 
