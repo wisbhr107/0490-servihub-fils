@@ -43,19 +43,19 @@ public final class Etapa07_Magatzems {
      */
     public static void transfereix(Magatzem origen, Magatzem desti, int quantitat) {
         // TODO FORAT 19 · Tria com a "primer" el magatzem amb el número més petit (i l'altre serà "segon").
-        Magatzem primer = Forat.n(19);
+        Magatzem primer = origen.numero < desti.numero ? origen : desti;
         Magatzem segon = primer == origen ? desti : origen;
 
         primer.pany.lock();
         try {
             // TODO FORAT 20 · Agafa també el pany del segon magatzem.
-            Forat.n(20);
+            segon.pany.lock();
             try {
                 origen.estoc -= quantitat;
                 desti.estoc += quantitat;
             } finally {
                 // TODO FORAT 21 · Allibera el pany del segon magatzem (passi el que passi).
-                Forat.n(21);
+                segon.pany.unlock();
             }
         } finally {
             primer.pany.unlock();
