@@ -27,14 +27,14 @@ public final class Etapa04_Aturar {
         @Override
         public void run() {
             // TODO FORAT 10 · Continua fent rondes mentre el fil actual NO estigui interromput.
-            while (Forat.<Boolean>n(10)) {
+                    while (!Thread.currentThread().isInterrupted()) {
                 rondes.incrementAndGet();
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
                     // sleep() ha esborrat la bandera d'interrupció en llançar l'excepció.
                     // TODO FORAT 11 · Torna a marcar el fil actual com a interromput perquè el while acabi.
-                    Forat.n(11);
+                    Thread.currentThread().interrupt();
                 }
             }
             System.out.println("Vigilant: plego després de " + rondes.get() + " rondes.");
@@ -48,7 +48,7 @@ public final class Etapa04_Aturar {
      */
     public static boolean aturaVigilant(Thread filDelVigilant) throws InterruptedException {
         // TODO FORAT 12 · Demana al fil del vigilant que s'interrompi.
-        Forat.n(12);
+         filDelVigilant.interrupt();
         return Etapa02_Esperar.esperaAmbLimit(filDelVigilant, 1000);
     }
 
