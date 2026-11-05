@@ -1,6 +1,6 @@
 # ServiHub · La central de comandes en 10 etapes (MP0490 · RA2 · fils)
 
-**Alumne/a:** _(escriu aquí el teu nom)_
+**Alumne/a:** Wassim bouhjar
 
 Projecte Maven (Java 21, JUnit 5) que **ja compila** però té **30 forats** (3 per etapa) marcats amb
 `// TODO FORAT xx`. Al lloc de cada línia que falta hi ha una crida `Forat.n(xx)`: substitueix-la per la teva línia.
